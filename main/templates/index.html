@@ -15,6 +15,38 @@
     <!-- Scripts -->
 </head>
 <body>
-    <h1>Hello, world!</h1>
+    <header class="primary-container">
+        <span class="logos-row">
+            <img class="logo-large" src="{{ url_for('static', filename='icons/zendesk-logo-z-min.svg') }}" alt="Zendesk">
+            <img class="logo-small" src="{{ url_for('static', filename='icons/x.svg') }}" alt="x">
+            <img class="logo-large" src="{{ url_for('static', filename='icons/favicon_180.png') }}" alt="Samm Du">
+        </span>
+        <h1>Zendesk Ticket Viewer</h1>
+    </header>
+    <main class="primary-container">
+        <h2>Current Tickets</h2>
+        <ul>
+            {% for ticket in tickets %}
+            <li>
+                <p class="ticket-metadata">
+                    <span class="ticket-id">&#35;{{ ticket["id"] }}</span>
+                    <span class="ticket-tags">
+                        {% for tag in ticket["tags"] %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endfor %}
+                    </span>
+                </p>
+                <h3 class="ticket-title">
+                    <span class="ticket-status status-{{ ticket['status'] }}">{{ ticket["status"] }}</span>
+                    {{ ticket["subject"] }}
+                </h3>
+            </li>
+            {% endfor %}
+        </ul>
+    </main>
+    <nav class="primary-container">
+        <button type="button" name="btn-prev">Previous</button>
+        <button type="button" name="btn-next">Next</button>
+    </nav>
 </body>
 </html>

@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'HKGroteskMedium';
+    src: url('../fonts/HKGrotesk-Medium.eot?#iefix');
+    src: url('../fonts/HKGrotesk-Medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HKGrotesk-Medium.woff2') format('woff2'),
+         url('../fonts/HKGrotesk-Medium.woff') format('woff'),
+         url('../fonts/HKGrotesk-Medium.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* generic and common elements styling */
+
+html {
+	height: 100%;
+}
+
+body {
+    font-family: "sharp sans en", "HKGroteskMedium", "HK Grotesk", "Poppins",
+                 "Poppins Latin", "Segoe UI", "SF Pro", "Roboto", "Ubuntu",
+                 Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #03363d;
+	height: 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+button {
+    font-family: inherit;
+    font-size: 1em;
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.primary-container {
+    width: 35rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+/* header section styling */
+
+header {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+header span.logos-row {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+img.logo-large {
+    height: 2rem;
+    width: auto;
+}
+
+img.logo-small {
+    height: 0.8rem;
+    width: auto;
+}
+
+/* main section styling */
+
+main {
+    background-color: #f6f4f4;
+    color: #2F3941;
+    box-shadow: 0 8px 24px rgba(0,0,0,.13);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+main h2 {
+    background-color: #03363d;
+    color: #ffffff;
+    padding: 1rem;
+}
+
+main ul li {
+    padding: 0.8rem 0.5rem;
+    border-top: 1px solid #D8DCDE;
+    transition: all 200ms ease;
+}
+
+main ul li:hover {
+    background-color: #d6eef2;
+    cursor: pointer;
+}
+
+main ul li p.ticket-metadata {
+    padding: 0 0.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+p.ticket-metadata span.ticket-id {
+    color: #03363d;
+}
+
+p.ticket-metadata span.ticket-tags {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+}
+
+p.ticket-metadata span.ticket-tags span.tag {
+    border-bottom: 2px solid #2F3941;
+}
+
+main ul li h3.ticket-title {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+main ul li h3.ticket-title span.ticket-status {
+    height: 2em;
+    padding: 0 0.25em 0 0.25em;
+    border: 2px solid;
+    border-radius: 1rem;;
+}
+
+/* navigaion section styling */
+
+nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+nav button {
+    background-color: #17494d;
+    color: #ffffff;
+    padding: 0.5em 1em;
+    transition: all 200ms ease;
+}
+
+nav button:hover {
+    background-color: #012b30;
+}
