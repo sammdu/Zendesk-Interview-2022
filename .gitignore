@@ -1,2 +1,4 @@
 # exclude pychache
 __pycache__/
+# exclude mypy cache
+.mypy_cache/
