@@ -1,0 +1,6 @@
+{% block navigation %}
+<nav class="primary-container">
+    <button onclick="gotoBatch('prev');" type="button" name="btn-prev" {% if prev_batch == {} %} style="visibility: hidden;" {% endif %}>Previous</button>
+    <button onclick="gotoBatch('next');" type="button" name="btn-next" {% if next_batch == {} %} style="visibility: hidden;" {% endif %}>Next</button>
+</nav>
+{% endblock %}

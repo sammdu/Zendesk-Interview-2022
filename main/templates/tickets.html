@@ -1,0 +1,25 @@
+{% block tickets %}
+<h2>
+    <span>Current Tickets</span>
+    <span>&#35;{{ current_list[0]["id"] }} &mdash; &#35;{{ current_list[-1]["id"] }}</span>
+</h2>
+
+<ul>
+    {% for ticket in current_list %}
+    <li>
+        <p class="ticket-metadata">
+            <span class="ticket-id">&#35;{{ ticket["id"] }}</span>
+            <span class="ticket-tags">
+                {% for tag in ticket["tags"] %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            </span>
+        </p>
+        <h3 class="ticket-title">
+            <span class="ticket-status status-{{ ticket['status'] }}">{{ ticket["status"] }}</span>
+            {{ ticket["subject"] }}
+        </h3>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

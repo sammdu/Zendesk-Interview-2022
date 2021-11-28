@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/minireset.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- Scripts -->
+    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}" defer></script>
 </head>
 <body>
     <header class="primary-container">
@@ -22,31 +23,20 @@
             <img class="logo-large" src="{{ url_for('static', filename='icons/favicon_180.png') }}" alt="Samm Du">
         </span>
         <h1>Zendesk Ticket Viewer</h1>
+        <h3>2022 Summer Internship Coding Challenge</h3>
     </header>
+
+    <!-- Get the current, next, and previous batch of tickets -->
+    {% set current_list = all_tickets.get_current_batch() %}
+    {% set prev_batch = all_tickets.seek_batch('prev') %}
+    {% set next_batch = all_tickets.seek_batch('next') %}
+
+    {% include 'navigation.html' %}
+
     <main class="primary-container">
-        <h2>Current Tickets</h2>
-        <ul>
-            {% for ticket in tickets %}
-            <li>
-                <p class="ticket-metadata">
-                    <span class="ticket-id">&#35;{{ ticket["id"] }}</span>
-                    <span class="ticket-tags">
-                        {% for tag in ticket["tags"] %}
-                        <span class="tag">{{ tag }}</span>
-                        {% endfor %}
-                    </span>
-                </p>
-                <h3 class="ticket-title">
-                    <span class="ticket-status status-{{ ticket['status'] }}">{{ ticket["status"] }}</span>
-                    {{ ticket["subject"] }}
-                </h3>
-            </li>
-            {% endfor %}
-        </ul>
+        {% include 'tickets.html' %}
     </main>
-    <nav class="primary-container">
-        <button type="button" name="btn-prev">Previous</button>
-        <button type="button" name="btn-next">Next</button>
-    </nav>
+
+    {% include 'navigation.html' %}
 </body>
 </html>
