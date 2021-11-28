@@ -25,7 +25,6 @@ async function gotoBatch(direction) {
 }
 
 async function ticketDetails(ticket_url) {
-    console.log("modal");
     try {
         // ask the server for the details of a ticket given its API URL
         const response = await fetch(

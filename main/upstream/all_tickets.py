@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.9
 """
-Class that encapsulates functions related to fetching all tickets from the Zendesk API.
+Fetch all tickets from the Zendesk API for a given Zendesk account.
 
 Public methods:
     - AllTickets(api_url_root: str, auth_tuple: tuple[str, str], page_size: int = 25)
@@ -23,8 +23,9 @@ class AllTickets:
         api_url_root: str,
         auth_tuple: tuple[str, str],
         page_size: int = 25
-    ):
+    ) -> None:
         """
+        Save Zendesk API URL root in a string and authentication info in a tuple.
         Accept an integer `page_size` parameter, and configure the number of tickets to be
         retrieved per batch of tickets. Also configure the initial request URL and
         initialize the previous and next page request URLs to be empty strings ''.
@@ -40,7 +41,7 @@ class AllTickets:
         """
         Request a batch of tickets from the Zendesk API at the specified URL. Return the
         JSON results as a dict. Raise a RuntimeError if the HTTP response is not 200 (thus
-        unsuccessful).
+        unsuccessful). Return an empty dict upon failure.
         """
         try:
             # assemble the request URL and perform the GET request
@@ -57,7 +58,7 @@ class AllTickets:
             return response.json()
 
         except Exception as e:
-            print(f'\n---\n{e}\n---\n')
+            print(f'---\n{e}\n---')
 
         return {}
 
@@ -67,8 +68,10 @@ class AllTickets:
         Update the next and previous URL pointers upon successful request.
         Return an empty dict if unsuccessful.
         """
+        # attemp to fetch the current batch of tickets
         current_batch: dict = self._request_tickets(self._url_curr)
         if current_batch != {}:
+            # update the URL pointers
             self._url_next = current_batch["links"]["next"]
             self._url_prev = current_batch["links"]["prev"]
             return current_batch["tickets"]
