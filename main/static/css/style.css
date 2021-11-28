@@ -48,6 +48,7 @@ button {
     border: none;
     display: inline-flex;
     justify-content: center;
+    align-items: center;
 }
 
 button:hover {
@@ -60,6 +61,34 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
     display: flex;
+}
+
+.primary-shadow {
+    box-shadow: 0 8px 24px rgba(0,0,0,.13);
+}
+
+.top-bar {
+    background-color: #17494d;
+    color: #ffffff;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-open {
+    color: #ff003d;
+    border-color: #ff003d;
+}
+
+.status-pending {
+    color: #007dff;
+    border-color: #007dff;
+}
+
+.status-solved {
+    color: #00af60;
+    border-color: #00af60;
 }
 
 /* header section styling */
@@ -96,7 +125,6 @@ img.logo-small {
 main {
     background-color: #f6f4f4;
     color: #2F3941;
-    box-shadow: 0 8px 24px rgba(0,0,0,.13);
     margin-top: 1rem;
     margin-bottom: 2rem;
     flex-direction: column;
@@ -104,15 +132,8 @@ main {
     align-items: stretch;
 }
 
-main h2 {
-    background-color: #17494d;
-    color: #ffffff;
+main h2.top-bar {
     padding: 1rem;
-
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 
 main ul li {
@@ -139,28 +160,29 @@ p.ticket-metadata span.ticket-id {
     color: #03363d;
 }
 
-p.ticket-metadata span.ticket-tags {
+span.ticket-tags {
+    align-self: flex-end;
     display: inline-flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
     column-gap: 1rem;
 }
 
-p.ticket-metadata span.ticket-tags span.tag {
+span.ticket-tags span.tag {
     border-bottom: 2px solid #2F3941;
 }
 
-main ul li h3.ticket-title {
+h3.ticket-title {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
-main ul li h3.ticket-title span.ticket-status {
-    height: 2em;
-    padding: 0 0.25em 0 0.25em;
+span.ticket-status {
+    padding: 0 0.5em 0 0.5em;
     border: 2px solid;
     border-radius: 1rem;;
+    font-size: 1rem;
 }
 
 /* navigaion section styling */
@@ -188,4 +210,100 @@ nav button[name="btn-prev"] {
 
 nav button[name="btn-next"] {
     align-self: flex-end;
+}
+
+/* ticket details modal styling */
+
+section.ticket-details-container {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.25);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 200ms ease;
+}
+
+div.ticket-details {
+    position: relative;
+    background-color: #f6f4f4;
+    width: 35rem;
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+div.ticket-details h2.top-bar span {
+    padding: 1rem;
+}
+
+div.ticket-details h2.top-bar button {
+    height: 2rem;
+    width: 2rem;
+    margin: 1rem;
+    background-color: #ff003d;
+    color: #ffffff;
+    transition: all 200ms ease;
+}
+
+div.ticket-details h2.top-bar button:hover {
+    background-color: #d10939;
+}
+
+div.ticket-details h2.top-bar button img {
+    height: 1rem;
+    width: auto;
+}
+
+article.ticket-body {
+    color: #2F3941;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+article.ticket-body span.ticket-status {
+    align-self: flex-start;
+}
+
+article.ticket-body h3.ticket-title {
+    margin-left: 0.25rem;
+}
+
+div.ticket-creation-info {
+    margin: 1.5rem 0 1rem 0;
+    min-width: 20rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+div.ticket-creation-info ul {
+    min-width: 10rem;
+    width: 45%;
+}
+
+div.ticket-creation-info ul li {
+    padding-bottom: 0.5rem;
+}
+
+article.ticket-body p.ticket-description {
+    padding: 1rem;
+    background-color: #ffffff;
+    max-height: 15rem;
+    overflow-y: auto;
 }

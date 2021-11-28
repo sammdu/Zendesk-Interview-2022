@@ -1,0 +1,41 @@
+{% block ticket_details %}
+<div class="primary-container primary-shadow ticket-details">
+
+    <h2 class="top-bar">
+        <span>Ticket &#35;{{ selected_ticket['id'] }}</span>
+        <button type="button" name="btn-close-details" onclick="closeTicketDetails();">
+            <img class="logo-small" src="{{ url_for('static', filename='icons/x-white.svg') }}" alt="x">
+        </button>
+    </h2>
+
+    <article class="ticket-body">
+        <h3>
+            <span class="ticket-status status-{{ selected_ticket['status'] }}">{{ selected_ticket['status'] }}</span>
+        </h3>
+
+        <h3 class="ticket-title">{{ selected_ticket['subject'] }}</h3>
+
+        <span class="ticket-tags">
+            <strong>Tags:</strong>
+            {% for tag in selected_ticket['tags'] %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </span>
+
+        <div class="ticket-creation-info">
+            <ul class="ticket-people">
+                <li><strong>Requested by: </strong>{{ selected_ticket['requester'] }}</li>
+                <li><strong>Assigned to: </strong>{{ selected_ticket['assignee'] }}</li>
+            </ul>
+            <ul class="ticket-time">
+                <li><strong>Created at: </strong>{{ selected_ticket['created_at'] }}</li>
+                <li><strong>Updated at: </strong>{{ selected_ticket['updated_at'] }}</li>
+            </ul>
+        </div>
+
+        <p class="ticket-description">
+            {{ selected_ticket['description'] }}
+        </p>
+    </article>
+</div>
+{% endblock %}
