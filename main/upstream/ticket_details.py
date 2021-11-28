@@ -4,6 +4,7 @@ Fetch a ticket with associated user info from the Zendesk API for a given Zendes
 
 Public methods:
     - TicketDetails(api_url_root: str, auth_tuple: tuple[str, str])
+    - TicketDetails.get_ticket(url) -> dict
 """
 
 import requests

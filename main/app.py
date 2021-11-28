@@ -1,10 +1,12 @@
 #!/usr/bin/env python3.9
 """
-Main application entry point. Serves the root ('/') endpoint.
+Main application entry point. Serves the following endpoints:
+    - GET /
+    - GET /navigate
+    - GET /ticket_details
 """
 
 import secrets
-import json
 from flask import Flask, render_template, request, make_response, jsonify, session
 
 from main.upstream.zendesk_common import API_URL_ROOT, AUTH_TUPLE
@@ -24,7 +26,7 @@ allticket_objs: dict = {}
 ticketdetails_objs: dict = {}
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
     """
     Render the main view on the frontend.
