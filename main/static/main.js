@@ -1,6 +1,10 @@
 // URL root path of the current page
 const page_url_root = window.location.protocol + '//' + window.location.host;
 
+/*
+    Triggered by the "Previous" and "Next" navigation buttons. Calls the naviation API
+    to get the previous or next batch of tickets, and refresh the page upon success.
+*/
 async function gotoBatch(direction) {
     try {
         // ask the server for the next/previous batch of tickets
@@ -24,6 +28,11 @@ async function gotoBatch(direction) {
     }
 }
 
+/*
+    Triggered by clicking on an <li> ticket listing. Calls the ticket details API,
+    retrieves ticket details with associated HTML, and displays the rendered ticket
+    details modal.
+*/
 async function ticketDetails(ticket_url) {
     try {
         // ask the server for the details of a ticket given its API URL
@@ -37,7 +46,7 @@ async function ticketDetails(ticket_url) {
             const body = await response.text();
             // inject the retrieved HTML into the ticket details container element
             ticketDetailsSection = document.getElementById('ticketDetailsContainer');
-            ticketDetailsSection.innerHTML = body
+            ticketDetailsSection.innerHTML = body;
             ticketDetailsSection.style.display = 'flex';
         }
         else {
@@ -49,6 +58,10 @@ async function ticketDetails(ticket_url) {
     }
 }
 
+/*
+    Triggered by the "X" (close) button in a ticket details modal. Closes the ticket
+    details modal.
+*/
 function closeTicketDetails() {
     ticketDetailsSection = document.getElementById('ticketDetailsContainer');
     ticketDetailsSection.style.display = 'none';
