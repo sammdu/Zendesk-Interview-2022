@@ -7,7 +7,7 @@ async function gotoBatch(direction) {
         const response = await fetch(page_url_root + '/navigate?direction=' + direction);
 
         // if request was successful, refresh the page
-        if (response.status == 200) {
+        if (response.status === 200) {
             location.reload();
         }
         else {
@@ -16,6 +16,11 @@ async function gotoBatch(direction) {
     }
     catch (e) {
         console.log(e);
+        // dislay a friendly error for the user
+        const header_elem = document.querySelector("header");
+        header_elem.innerHTML += '<p class="error">' +
+            "Uh-oh! Failed to fetch the " + direction + " page. Please try again!" +
+            '</p>';
     }
 }
 

@@ -31,15 +31,25 @@
     {% set prev_batch = all_tickets.seek_batch('prev') %}
     {% set next_batch = all_tickets.seek_batch('next') %}
 
-    {% include 'navigation.html' %}
+    {% if current_list %}
 
-    <main class="primary-container primary-shadow">
-        {% include 'tickets.html' %}
-    </main>
+        {% include 'navigation.html' %}
 
-    {% include 'navigation.html' %}
+        <main class="primary-container primary-shadow">
+            {% include 'tickets.html' %}
+        </main>
 
-    <section id="ticketDetailsContainer" class="ticket-details-container">
-    </section>
+        {% include 'navigation.html' %}
+
+        <section id="ticketDetailsContainer" class="ticket-details-container">
+        </section>
+
+    {% else %}
+
+        <p class="error">
+            Uh-oh! Cannot see any tickets at this moment. Please try again!
+        </p>
+
+    {% endif %}
 </body>
 </html>

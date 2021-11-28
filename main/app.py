@@ -56,11 +56,19 @@ def navigate():
     # navigate to the specified batch of tickets
     direction: str = request.args.get('direction')
     if direction == 'prev':
-        return jsonify(ticket_objs[session['session_id']].goto_prev_batch())
+        return_batch: list = ticket_objs[session['session_id']].goto_prev_batch()
     elif direction == 'next':
-        return jsonify(ticket_objs[session['session_id']].goto_next_batch())
+        return_batch: list = ticket_objs[session['session_id']].goto_next_batch()
     else:
         return make_response("'direction' must either be 'prev' or 'next'!", 400)
+
+    print(return_batch)
+
+    # display error for empty result
+    if not return_batch:
+        return make_response(f"Failed to fetch the {direction} page.", 404)
+    else:
+        return jsonify(return_batch)
 
 
 @app.route('/ticket_details', methods=['GET'])

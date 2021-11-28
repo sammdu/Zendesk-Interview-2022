@@ -91,6 +91,14 @@ button:hover {
     border-color: #00af60;
 }
 
+p.error {
+    margin: 1rem auto;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    color: #ff003d;
+    text-align: center;
+}
+
 /* header section styling */
 
 header {
