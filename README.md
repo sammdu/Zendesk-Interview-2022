@@ -84,10 +84,14 @@ python3.9 ./run.py
 This will start a server at [http://127.0.0.1:5000/](http://127.0.0.1:5000/). Visit this address in your browser to see the project in action.
 
 ## Testing
-### 1. Testing for type violations
+### 1. Testing for type violations with `mypy`
 In the project repository root, where the `mypy.ini` file is located, simply execute the following command to test for type violations:
 ```bash
 mypy
 ```
 
 ### 2. Unit tests with `pytest`
+In the project repository root, where the `test.py` file is located, simply execute the following command to run all unit tests within the `test/` folder:
+```bash
+python3.9 ./test.py
+```

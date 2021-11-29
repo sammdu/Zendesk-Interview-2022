@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 """
 Common components for the Zendesk API, configured via environment variables.
-    - API_URL: the URL root for Zendesk API requests
+    - API_URL_ROOT: the URL root for Zendesk API requests
         * depends on environment variable ZENDESK_API_SUBDOMAIN
     - AUTH_TUPLE: HTTP Basic Authentication tuple, to be supplied to the requests library
         * depends on environment variables ZENDESK_API_EMAIL, ZENDESK_API_TOEKEN
