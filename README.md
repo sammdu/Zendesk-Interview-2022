@@ -8,6 +8,10 @@ Take-home technical project for Zendesk 2022 summer internship.
 
 Developed using Python, Flask, HTML, CSS, JavaScript, and displays a web-based user interface.
 
+![Screenshot_1](https://user-images.githubusercontent.com/10665890/143807317-09d29b96-74a0-46e1-8e0d-e3221bb633e6.png)
+![Screenshot_2](https://user-images.githubusercontent.com/10665890/143807350-2ce67bb3-e4fb-42f8-bf1b-eb960d19c261.png)
+
+
 ## Prerequisites
 ### Python
 Please use `Python3.9`.
