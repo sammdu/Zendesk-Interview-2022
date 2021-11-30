@@ -32,6 +32,7 @@ class TicketDetails:
         try:
             # assemble the request URL and perform the GET request
             response = requests.get(url, auth=self.auth_tuple)
+
             # handle when HTTP request is unsuccessful
             if response.status_code != 200:
                 raise RuntimeError(
@@ -41,6 +42,7 @@ class TicketDetails:
                     URL: {url}
                     """
                 )
+
             return response.json()['ticket']
 
         except Exception as e:
@@ -58,6 +60,7 @@ class TicketDetails:
             # assemble the request URL and perform the GET request
             url: str = self.api_url_root + f'/users/{user_id}.json'
             response = requests.get(url, auth=self.auth_tuple)
+
             # handle when HTTP request is unsuccessful
             if response.status_code != 200:
                 raise RuntimeError(
@@ -67,6 +70,7 @@ class TicketDetails:
                     URL: {url}
                     """
                 )
+
             return response.json()['user']
 
         except Exception as e:
@@ -83,13 +87,16 @@ class TicketDetails:
         """
         # attemp to fetch the specified ticket
         ticket_details: dict = self._request_ticket(url)
+
         if ticket_details != {}:
             # attempt to fetch the associated requester and assignee user profiles
             requester: dict = self._request_user(user_id=ticket_details['requester_id'])
             assignee: dict = self._request_user(user_id=ticket_details['assignee_id'])
+
             if requester != {} and assignee != {}:
                 # append associated requester and assignee user profiles to ticket details
                 ticket_details['requester'] = requester
                 ticket_details['assignee'] = assignee
                 return ticket_details
+
         return {}

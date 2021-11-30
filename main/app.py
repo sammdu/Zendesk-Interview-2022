@@ -2,8 +2,8 @@
 """
 Main application entry point. Serves the following endpoints:
     - GET /
-    - GET /navigate
-    - GET /ticket_details
+    - GET /navigate         direction=      navigation direction, either "prev" or "next"
+    - GET /ticket_details   ticket_url=     URL of the ticket whose details are requested
 """
 
 import secrets
@@ -68,7 +68,7 @@ def navigate():
     else:
         return make_response("'direction' must either be 'prev' or 'next'!", 400)
 
-    # display error for empty result
+    # display an error for empty result; if successful, return the navigated batch
     if not return_batch:
         return make_response(f"Failed to fetch the {direction} page.", 404)
     else:
@@ -78,9 +78,10 @@ def navigate():
 @app.route('/ticket_details', methods=['GET'])
 def ticket_details():
     """
-    Upon request, fetch the details of a ticket as well as its associated users by the
-    given ticket URL. Render the pop-up modal HTML with the ticket and user details, and
-    retrun it to the frontend.
+    Upon request, generate a TicketDetails object for the user's session if it does not
+    exist, fetch the details of the requested ticket as well as its associated users by
+    the given ticket URL using the TicketDetails get_ticket() method. Render the pop-up
+    modal HTML with the ticket and user details, and retrun it to the frontend.
     Do not permit access to this endpoint without an existing session.
     """
     # only permit access after a session has been established

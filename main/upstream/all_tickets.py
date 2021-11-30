@@ -46,6 +46,7 @@ class AllTickets:
         try:
             # assemble the request URL and perform the GET request
             response = requests.get(url, auth=self.auth_tuple)
+
             # handle when HTTP request is unsuccessful
             if response.status_code != 200:
                 raise RuntimeError(
@@ -55,6 +56,7 @@ class AllTickets:
                     URL: {url}
                     """
                 )
+
             return response.json()
 
         except Exception as e:
@@ -70,11 +72,13 @@ class AllTickets:
         """
         # attemp to fetch the current batch of tickets
         current_batch: dict = self._request_tickets(self._url_curr)
+
         if current_batch != {}:
             # update the URL pointers
             self._url_next = current_batch["links"]["next"]
             self._url_prev = current_batch["links"]["prev"]
             return current_batch["tickets"]
+
         return []
 
     def seek_batch(self, direction) -> dict:
@@ -122,6 +126,7 @@ class AllTickets:
             self._url_next = next_batch["links"]["next"]
             # and return the next batch of tickets
             return next_batch["tickets"]
+
         return []
 
     def goto_prev_batch(self) -> list:
@@ -142,4 +147,5 @@ class AllTickets:
             self._url_prev = prev_batch["links"]["prev"]
             # and return the previous batch of tickets
             return prev_batch["tickets"]
+
         return []
