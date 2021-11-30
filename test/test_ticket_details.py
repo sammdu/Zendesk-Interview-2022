@@ -13,7 +13,7 @@ from main.upstream.ticket_details import TicketDetails
 @pytest.fixture()
 def td_instance():
     """
-    Initializes and yields an instance of the TicketDetails class.
+    Initialize and yield an instance of the TicketDetails class.
     """
     td: TicketDetails = TicketDetails(api_url_root=API_URL_ROOT, auth_tuple=AUTH_TUPLE)
     yield td
@@ -22,7 +22,7 @@ def td_instance():
 @pytest.fixture()
 def resp():
     """
-    Test responses from the Zendesk API.
+    Provide test responses from the Zendesk API.
     """
     class Responses:
         ticket_success: dict = json.loads("""
@@ -51,8 +51,7 @@ def resp():
 
 def test_init(td_instance):
     """
-    Test the __init__() method, make sure it records the correct
-    information.
+    Test the __init__() method, make sure it records the correct information.
     """
     assert td_instance.api_url_root == API_URL_ROOT
     assert td_instance.auth_tuple == AUTH_TUPLE
