@@ -23,7 +23,9 @@ Flask==2.0.2
 Jinja2==3.0.3
 mypy==0.910
 mypy-extensions==0.4.3
+pytest==6.2.5
 requests==2.26.0
+requests-mock==1.9.3
 types-Flask==1.1.5
 types-Jinja2==2.11.8
 types-requests==2.26.1

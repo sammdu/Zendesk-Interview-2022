@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.9
 """
-
+Test the `zendesk_common.py` file under main/upstream.
 """
 
 import os
@@ -8,45 +8,37 @@ import pytest
 
 
 @pytest.fixture()
-def setup_and_teardown():
+def variables():
     """
-    Set up dummy environment variables for testing, and remove them once testsing is
-    complete.
+    Retrieve environment variables for testing, and pass their values to the test
+    functions.
     """
-    # dummy environemnt variable values used for testing
-    subdomain: str = 'pytest'
-    email: str = 'pytest@example.com'
-    token: str = 'pytest123'
+    # get environemnt variable values for testing
+    subdomain: str = os.getenv("ZENDESK_API_SUBDOMAIN")
+    email: str = os.getenv("ZENDESK_API_EMAIL")
+    token: str = os.getenv("ZENDESK_API_TOEKEN")
 
-    # set the dummy environemnt variable in the system
-    print("\n> setup environment variables for testing")
-    os.environ['ZENDESK_API_SUBDOMAIN'] = subdomain
-    os.environ['ZENDESK_API_EMAIL'] = email
-    os.environ['ZENDESK_API_TOEKEN'] = token
-
-    # pass the dummy values to the test function
+    # pass the values to the test function
     yield subdomain, email, token
 
-    # unset the dummy environemnt variable in the system
-    print("\n> remove environment variables after testing")
-    os.environ.pop('ZENDESK_API_SUBDOMAIN')
-    os.environ.pop('ZENDESK_API_EMAIL')
-    os.environ.pop('ZENDESK_API_TOEKEN')
 
-
-def test_zendesk_common_constants(setup_and_teardown):
+def test_zendesk_common_url_root(variables):
     """
-    Import the relevant Zendesk configuration constants and see if they contain correct
-    information based on the dummy environment variables
+    Import the relevant Zendesk configuration constants and see if it contains the correct
+    URL root.
     """
-    # retrieve dummy environment variable values
-    subdomain, email, token = setup_and_teardown
+    subdomain, email, token = variables
 
-    # import Zendesk constants being tested
-    from main.upstream.zendesk_common import API_URL_ROOT, AUTH_TUPLE
+    from main.upstream.zendesk_common import API_URL_ROOT
+    assert API_URL_ROOT == f"https://{subdomain}.zendesk.com/api/v2"
 
-    # create test conditions that need to be true
-    cond_API_URL_ROOT: bool = API_URL_ROOT == f"https://{subdomain}.zendesk.com/api/v2"
-    cond_AUTH_TUPLE: bool = AUTH_TUPLE == (f"{email}/token", token)
 
-    assert cond_API_URL_ROOT and cond_AUTH_TUPLE
+def test_zendesk_common_auth(variables):
+    """
+    Import the relevant Zendesk configuration constants and see if it contains the correct
+    authentication tuple.
+    """
+    subdomain, email, token = variables
+
+    from main.upstream.zendesk_common import AUTH_TUPLE
+    assert AUTH_TUPLE == (f"{email}/token", token)
