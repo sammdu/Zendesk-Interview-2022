@@ -5,7 +5,7 @@ Fetch all tickets from the Zendesk API for a given Zendesk account.
 Public methods:
     - AllTickets(api_url_root: str, auth_tuple: tuple[str, str], page_size: int = 25)
     - AllTickets.get_current_batch() -> list
-    - AllTickets.seek_batch(direction: str)  # direction in {"prev", "next"}
+    - AllTickets.seek_batch(direction: str) -> dict  # direction in {"prev", "next"}
     - AllTickets.goto_next_batch() -> list
     - AllTickets.goto_prev_batch() -> list
 """
