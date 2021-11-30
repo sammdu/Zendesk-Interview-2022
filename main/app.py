@@ -1,7 +1,7 @@
 #!/usr/bin/env python3.9
 """
 Main application entry point. Serves the following endpoints:
-    - GET /
+    - GET /                                 renders and returns the web UI HTML templates
     - GET /navigate         direction=      navigation direction, either "prev" or "next"
     - GET /ticket_details   ticket_url=     URL of the ticket whose details are requested
 """
@@ -29,7 +29,7 @@ ticketdetails_objs: dict = {}
 @app.route('/', methods=['GET'])
 def index():
     """
-    Render the main view on the frontend.
+    Render and return the main web UI to the frontend.
     Generate a unique session_id if it does not exist.
     Initialize an AllTickets object to be used during the session.
     """
