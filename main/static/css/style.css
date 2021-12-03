@@ -86,7 +86,7 @@ button:hover {
     border-color: #007dff;
 }
 
-.status-solved {
+.status-closed, .status-solved {
     color: #00af60;
     border-color: #00af60;
 }
